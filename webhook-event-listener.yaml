@@ -1,0 +1,19 @@
+apiVersion: triggers.tekton.dev/v1alpha1
+kind: EventListener
+metadata:
+  name: reversewords-webhook
+spec:
+  serviceAccountName: reversewords-pipeline
+  triggers:
+    - name: git-reversewords-trigger
+      interceptors:
+        - github:
+            secretRef:
+              secretName: webhook-secret
+              secretKey: secret
+            eventTypes:
+              - push
+      bindings:
+        - name: github-triggerbinding
+      template:
+        name: reverseword-build-triggertemplate

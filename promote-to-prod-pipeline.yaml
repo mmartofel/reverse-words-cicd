@@ -6,7 +6,7 @@ spec:
   type: git
   params:
   - name: url
-    value: <reversewords_cicd_git_repo>
+    value: https://github.com/mmartofel/reverse-words-cicd
   - name: revision
     value: config
   - name: sslVerify
@@ -69,13 +69,13 @@ spec:
       - name: file-path
         value: "deployment.yaml"
       - name: image-repo
-        value: "<reversewords_quay_repo>"
+        value: "quay.io/mmartofe/tekton-reversewords"
       - name: new-image-url
-        value: "<reversewords_quay_repo>:$(tasks.get-stage-release.results.release-tag)"
+        value: "quay.io/mmartofe/tekton-reversewords:$(tasks.get-stage-release.results.release-tag)"
       - name: source-branch
         value: "prod"
       - name: source-repo
-        value: "<imageBuilder_sourcerepo>"
+        value: "mmartofel/reverse-words-cicd"
       - name: update-key
         value: "spec.template.spec.containers.0.image"
       - name: insecure
